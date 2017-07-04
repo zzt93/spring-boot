@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2015 the original author or authors.
+ * Copyright 2012-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ import org.springframework.data.elasticsearch.core.convert.ElasticsearchConverte
 import org.springframework.data.elasticsearch.core.convert.MappingElasticsearchConverter;
 import org.springframework.data.elasticsearch.core.mapping.SimpleElasticsearchMappingContext;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.data.elasticsearch.repository.support.IndexNameVar;
 
 /**
  * {@link EnableAutoConfiguration Auto-configuration} for Spring Data's Elasticsearch
@@ -70,6 +71,12 @@ public class ElasticsearchDataAutoConfiguration {
 	@ConditionalOnMissingBean
 	public SimpleElasticsearchMappingContext mappingContext() {
 		return new SimpleElasticsearchMappingContext();
+	}
+
+	@Bean
+	@ConditionalOnMissingBean
+	public IndexNameVar indexNameVar() {
+		return new IndexNameVar("");
 	}
 
 }
